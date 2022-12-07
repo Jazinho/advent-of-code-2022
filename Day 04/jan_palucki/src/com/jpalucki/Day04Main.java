@@ -1,6 +1,6 @@
 package com.jpalucki;
 
-public class Day4Main {
+public class Day04Main {
 
   public static void main(String[] args) {
     String INPUT = InputProvider.getInput();

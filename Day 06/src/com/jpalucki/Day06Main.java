@@ -2,7 +2,7 @@ package com.jpalucki;
 
 import java.util.*;
 
-public class Day6Main {
+public class Day06Main {
 
   private final static int MAX_PACKET_STARTER_BUFFER_SIZE = 14;
   private final static int MAX_MESSAGE_BUFFER_SIZE = 14;

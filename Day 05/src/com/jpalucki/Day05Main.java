@@ -2,7 +2,7 @@ package com.jpalucki;
 
 import java.util.*;
 
-public class Day5Main {
+public class Day05Main {
 
   private final static String MOVE_COMMAND_PREFIX = "move";
 
