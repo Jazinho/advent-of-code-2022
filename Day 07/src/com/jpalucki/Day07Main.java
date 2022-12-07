@@ -16,7 +16,7 @@ public class Day07Main {
     String currentDir = "";
     int currentDirTotalFileSize = 0;
 
-    for (String line: INPUT.split("\n")) {
+    for (String line : INPUT.split("\n")) {
       if (line.startsWith(CMD_MARKER)) {
         if (currentDirTotalFileSize > 0) {
           addContent(directoriesContents, currentDir, String.valueOf(currentDirTotalFileSize));
@@ -31,7 +31,7 @@ public class Day07Main {
         } else if (newDir.equals("/")) {
           currentDir = "/";
         } else {
-          if (!currentDir.equals("/")){
+          if (!currentDir.equals("/")) {
             currentDir = currentDir + "/";
           }
           currentDir = currentDir + newDir;
@@ -72,7 +72,7 @@ public class Day07Main {
   }
 
   private static void addContent(Map<String, Set<String>> directoriesContents, String dir, String content) {
-    if(directoriesContents.containsKey(dir)){
+    if (directoriesContents.containsKey(dir)) {
       directoriesContents.get(dir).add(content);
     } else {
       directoriesContents.put(dir, new HashSet<String>(Collections.singletonList(content)));
@@ -82,12 +82,12 @@ public class Day07Main {
   private static int getDirSize(Map<String, Set<String>> directoriesContents, String dir) {
     int directoryTotalSize = 0;
     dir = dir.replace("//", "/");
-    if (!directoriesContents.containsKey(dir)){
+    if (!directoriesContents.containsKey(dir)) {
       System.out.println("Directory: " + dir + " is not contained in map!");
       return directoryTotalSize;
     }
 
-    for(String item: directoriesContents.get(dir)) {
+    for (String item : directoriesContents.get(dir)) {
       try {
         directoryTotalSize += Integer.parseInt(item);
       } catch (NumberFormatException e) {
