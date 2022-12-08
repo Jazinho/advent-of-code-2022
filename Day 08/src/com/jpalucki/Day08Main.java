@@ -20,18 +20,18 @@ public class Day08Main {
     }
 
     // Assuming square grid
-    int visibleTreesCounter = (grid.size() - 1) * 4;
+    int maxVisibilityScore = 0;
     for (int r = 1; r < grid.size() - 1; r++) {
       for (int c = 1; c < grid.get(r).size() - 1; c++) {
-        boolean isVisible = isVisible(grid, r, c);
-        if (isVisible) {
-//          System.out.println("Tree [" + r + "," + c + "] is visible");
-          visibleTreesCounter++;
+        int visibilityScore = getVisibilityScore(grid, r, c);
+        if (visibilityScore > maxVisibilityScore) {
+//          System.out.println("Reached for " + r + "," + c);
+          maxVisibilityScore = visibilityScore;
         }
       }
     }
 
-    System.out.println("Visible Trees Count: " + visibleTreesCounter);
+    System.out.println("Max Visible Score: " + maxVisibilityScore);
   }
 
   /**
@@ -39,48 +39,65 @@ public class Day08Main {
    * @param r    - row number (index)
    * @param c    - column number (index)
    *
-   * @return boolean saying if tree is visible or not
+   * @return visibility score which is multiplication of trees number that are visible in each direction
    */
-  private static boolean isVisible(ArrayList<ArrayList<String>> grid, int r, int c) {
-    return isVisibleUp(grid, r, c, 1) ||
-      isVisibleDown(grid, r, c, 1) ||
-      isVisibleRight(grid, r, c, 1) ||
-      isVisibleLeft(grid, r, c, 1);
+  private static int getVisibilityScore(ArrayList<ArrayList<String>> grid, int r, int c) {
+    int up = isVisibleUp(grid, r, c, 1);
+    int down = isVisibleDown(grid, r, c, 1);
+    int right = isVisibleRight(grid, r, c, 1);
+    int left = isVisibleLeft(grid, r, c, 1);
+    return up * down * left * right;
   }
 
-  private static boolean isVisibleLeft(ArrayList<ArrayList<String>> grid, int r, int c, int i) {
+  private static int isVisibleLeft(ArrayList<ArrayList<String>> grid, int r, int c, int i) {
     if (c - i >= 0) {
-      int currentHeight = Integer.parseInt(grid.get(r).get(c-i));
+      int currentHeight = Integer.parseInt(grid.get(r).get(c - i));
       int checkedHeight = Integer.parseInt(grid.get(r).get(c));
-      return currentHeight < checkedHeight && isVisibleLeft(grid, r, c, i + 1);
+      if (currentHeight < checkedHeight) {
+        return isVisibleLeft(grid, r, c, i + 1);
+      }
+    } else {
+      return i - 1;
     }
-    return true;
+    return i;
   }
 
-  private static boolean isVisibleRight(ArrayList<ArrayList<String>> grid, int r, int c, int i) {
+  private static int isVisibleRight(ArrayList<ArrayList<String>> grid, int r, int c, int i) {
     if (c + i < grid.get(r).size()) {
-      int currentHeight = Integer.parseInt(grid.get(r).get(c+i));
+      int currentHeight = Integer.parseInt(grid.get(r).get(c + i));
       int checkedHeight = Integer.parseInt(grid.get(r).get(c));
-      return currentHeight < checkedHeight && isVisibleRight(grid, r, c, i + 1);
+      if (currentHeight < checkedHeight) {
+        return isVisibleRight(grid, r, c, i + 1);
+      }
+    } else {
+      return i - 1;
     }
-    return true;
+    return i;
   }
 
-  private static boolean isVisibleUp(ArrayList<ArrayList<String>> grid, int r, int c, int i) {
+  private static int isVisibleUp(ArrayList<ArrayList<String>> grid, int r, int c, int i) {
     if (r - i >= 0) {
-      int currentHeight = Integer.parseInt(grid.get(r-i).get(c));
+      int currentHeight = Integer.parseInt(grid.get(r - i).get(c));
       int checkedHeight = Integer.parseInt(grid.get(r).get(c));
-      return currentHeight < checkedHeight && isVisibleUp(grid, r, c, i + 1);
+      if (currentHeight < checkedHeight) {
+        return isVisibleUp(grid, r, c, i + 1);
+      }
+    } else {
+      return i - 1;
     }
-    return true;
+    return i;
   }
 
-  private static boolean isVisibleDown(ArrayList<ArrayList<String>> grid, int r, int c, int i) {
+  private static int isVisibleDown(ArrayList<ArrayList<String>> grid, int r, int c, int i) {
     if (r + i < grid.size()) {
-      int currentHeight = Integer.parseInt(grid.get(r+i).get(c));
+      int currentHeight = Integer.parseInt(grid.get(r + i).get(c));
       int checkedHeight = Integer.parseInt(grid.get(r).get(c));
-      return currentHeight < checkedHeight && isVisibleDown(grid, r, c, i + 1);
+      if (currentHeight < checkedHeight) {
+        return isVisibleDown(grid, r, c, i + 1);
+      }
+    } else {
+      return i - 1;
     }
-    return true;
+    return i;
   }
 }
