@@ -1,48 +1,45 @@
 package com.jpalucki;
 
+import java.math.BigInteger;
 import java.util.LinkedList;
-import java.util.function.IntUnaryOperator;
+import java.util.function.Function;
 
 public class Monkey {
 
   private int counter = 0;
-  private LinkedList<Integer> items;
-  private final IntUnaryOperator getDestMonkeyNoFun;
-  private final IntUnaryOperator getWorryLevelFun;
+  private LinkedList<BigInteger> items;
+  private final Function<BigInteger, Integer> getDestMonkeyNoFun;
+  private final Function<BigInteger, BigInteger> getWorryLevelFun;
 
   public Monkey(
-    LinkedList<Integer> items,
-    IntUnaryOperator getDestMonkeyNoFun,
-    IntUnaryOperator getWorryLevelFun
+    LinkedList<BigInteger> items,
+    Function<BigInteger, Integer> getDestMonkeyNoFun,
+    Function<BigInteger, BigInteger> getWorryLevelFun
   ) {
     this.items = items;
     this.getDestMonkeyNoFun = getDestMonkeyNoFun;
     this.getWorryLevelFun = getWorryLevelFun;
   }
 
-  public void addItem(Integer item) {
+  public void addItem(BigInteger item) {
     items.add(item);
   }
 
-  public Integer inspectItem() {
+  public BigInteger inspectItem() {
     if (items.size() == 0) {
       return null;
     }
 
     this.counter++;
-    Integer item = items.pop();
-    return getWorryLevelFun.applyAsInt(item) / 3;
+    BigInteger item = items.pop();
+    return getWorryLevelFun.apply(item);
   }
 
-  public int getDestMonkeyNo(Integer item) {
-    return this.getDestMonkeyNoFun.applyAsInt(item);
+  public int getDestMonkeyNo(BigInteger item) {
+    return this.getDestMonkeyNoFun.apply(item);
   }
 
   public int getCounter() {
     return this.counter;
-  }
-
-  public LinkedList<Integer> getItems() {
-    return this.items;
   }
 }

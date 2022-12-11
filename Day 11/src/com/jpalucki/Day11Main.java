@@ -1,5 +1,6 @@
 package com.jpalucki;
 
+import java.math.BigInteger;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -19,21 +20,28 @@ public class Day11Main {
       String[] operationElements = monkeyLines[2].substring(2 + OP_ELEMENTS_PREFIX.length()).split(" ");
       String sign = operationElements[0];
       String val = operationElements[1];
-      Integer divisibleBy = Integer.valueOf(monkeyLines[3].trim().split(" ")[3]);
+      BigInteger divisibleBy = BigInteger.valueOf(Long.parseLong(monkeyLines[3].trim().split(" ")[3]));
       Integer monkeyIf = Integer.valueOf(monkeyLines[4].trim().split(" ")[5]);
       Integer monkeyElse = Integer.valueOf(monkeyLines[5].trim().split(" ")[5]);
 
       Monkey monkey = new Monkey(
-        new LinkedList<>(Arrays.stream(items).map(String::trim).map(Integer::valueOf).collect(Collectors.toList())),
-        (item) -> item % divisibleBy == 0 ? monkeyIf : monkeyElse,
-        sign.equals("*") ? (item) -> item * getVal(item, val) : (item) -> item + getVal(item, val)
+        new LinkedList<>(Arrays.stream(items)
+          .map(String::trim)
+          .map(Long::parseLong)
+          .map(BigInteger::valueOf)
+          .collect(Collectors.toList())),
+        (item) -> item.mod(divisibleBy).intValue() == 0 ? monkeyIf : monkeyElse,
+        sign.equals("*") ?
+          (item) -> item.multiply(getVal(item, val)) :
+          (item) -> item.add(getVal(item, val))
       );
       monkeys.add(monkey);
     }
 
-    for (int i = 1; i <= 20; i++) {
+    for (int i = 1; i <= 1000; i++) {
+      System.out.println("iteartion " + i);
       for (Monkey monkey : monkeys) {
-        Integer updatedItem;
+        BigInteger updatedItem;
         while ((updatedItem = monkey.inspectItem()) != null) {
           int nextMonkeyNo = monkey.getDestMonkeyNo(updatedItem);
           monkeys.get(nextMonkeyNo).addItem(updatedItem);
@@ -46,8 +54,8 @@ public class Day11Main {
     }
   }
 
-  private static Integer getVal(Integer item, String input) {
-    return input.equals("old") ? item : Integer.valueOf(input);
+  private static BigInteger getVal(BigInteger item, String input) {
+    return input.equals("old") ? item : BigInteger.valueOf(Long.parseLong(input));
   }
 
 }
