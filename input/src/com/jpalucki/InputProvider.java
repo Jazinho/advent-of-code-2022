@@ -6,145 +6,59 @@ public class InputProvider {
     return INPUT;
   }
 
-  private static final String INPUT = "addx 2\n" +
-    "addx 3\n" +
-    "addx 3\n" +
-    "addx -2\n" +
-    "addx 4\n" +
-    "noop\n" +
-    "addx 1\n" +
-    "addx 4\n" +
-    "addx 1\n" +
-    "noop\n" +
-    "addx 4\n" +
-    "addx 1\n" +
-    "noop\n" +
-    "addx 2\n" +
-    "addx 5\n" +
-    "addx -28\n" +
-    "addx 30\n" +
-    "noop\n" +
-    "addx 5\n" +
-    "addx 1\n" +
-    "noop\n" +
-    "addx -38\n" +
-    "noop\n" +
-    "noop\n" +
-    "noop\n" +
-    "noop\n" +
-    "addx 5\n" +
-    "addx 5\n" +
-    "addx 3\n" +
-    "addx 2\n" +
-    "addx -2\n" +
-    "addx 2\n" +
-    "noop\n" +
-    "noop\n" +
-    "addx -2\n" +
-    "addx 12\n" +
-    "noop\n" +
-    "addx 2\n" +
-    "addx 3\n" +
-    "noop\n" +
-    "addx 2\n" +
-    "addx -31\n" +
-    "addx 32\n" +
-    "addx 7\n" +
-    "noop\n" +
-    "addx -2\n" +
-    "addx -37\n" +
-    "addx 1\n" +
-    "addx 5\n" +
-    "addx 1\n" +
-    "noop\n" +
-    "addx 31\n" +
-    "addx -25\n" +
-    "addx -10\n" +
-    "addx 13\n" +
-    "noop\n" +
-    "noop\n" +
-    "addx 18\n" +
-    "addx -11\n" +
-    "addx 3\n" +
-    "noop\n" +
-    "noop\n" +
-    "addx 1\n" +
-    "addx 4\n" +
-    "addx -32\n" +
-    "addx 15\n" +
-    "addx 24\n" +
-    "addx -2\n" +
-    "noop\n" +
-    "addx -37\n" +
-    "noop\n" +
-    "noop\n" +
-    "noop\n" +
-    "addx 5\n" +
-    "addx 5\n" +
-    "addx 21\n" +
-    "addx -20\n" +
-    "noop\n" +
-    "addx 6\n" +
-    "addx 19\n" +
-    "addx -5\n" +
-    "addx -8\n" +
-    "addx -22\n" +
-    "addx 26\n" +
-    "addx -22\n" +
-    "addx 23\n" +
-    "addx 2\n" +
-    "noop\n" +
-    "noop\n" +
-    "noop\n" +
-    "addx 8\n" +
-    "addx -10\n" +
-    "addx -27\n" +
-    "addx 33\n" +
-    "addx -27\n" +
-    "noop\n" +
-    "addx 34\n" +
-    "addx -33\n" +
-    "addx 2\n" +
-    "addx 19\n" +
-    "addx -12\n" +
-    "addx 11\n" +
-    "addx -20\n" +
-    "addx 12\n" +
-    "addx 18\n" +
-    "addx -11\n" +
-    "addx -14\n" +
-    "addx 15\n" +
-    "addx 2\n" +
-    "noop\n" +
-    "addx 3\n" +
-    "addx 2\n" +
-    "noop\n" +
-    "noop\n" +
-    "noop\n" +
-    "addx -33\n" +
-    "noop\n" +
-    "addx 1\n" +
-    "addx 2\n" +
-    "noop\n" +
-    "addx 3\n" +
-    "addx 4\n" +
-    "noop\n" +
-    "addx 1\n" +
-    "addx 2\n" +
-    "noop\n" +
-    "noop\n" +
-    "addx 7\n" +
-    "addx 1\n" +
-    "noop\n" +
-    "addx 4\n" +
-    "addx -17\n" +
-    "addx 18\n" +
-    "addx 5\n" +
-    "addx -1\n" +
-    "addx 5\n" +
-    "addx 1\n" +
-    "noop\n" +
-    "noop\n" +
-    "noop\n" +
-    "noop";
+  private static final String INPUT = "Monkey 0:\n" +
+    "  Starting items: 59, 65, 86, 56, 74, 57, 56\n" +
+    "  Operation: new = old * 17\n" +
+    "  Test: divisible by 3\n" +
+    "    If true: throw to monkey 3\n" +
+    "    If false: throw to monkey 6\n" +
+    "\n" +
+    "Monkey 1:\n" +
+    "  Starting items: 63, 83, 50, 63, 56\n" +
+    "  Operation: new = old + 2\n" +
+    "  Test: divisible by 13\n" +
+    "    If true: throw to monkey 3\n" +
+    "    If false: throw to monkey 0\n" +
+    "\n" +
+    "Monkey 2:\n" +
+    "  Starting items: 93, 79, 74, 55\n" +
+    "  Operation: new = old + 1\n" +
+    "  Test: divisible by 2\n" +
+    "    If true: throw to monkey 0\n" +
+    "    If false: throw to monkey 1\n" +
+    "\n" +
+    "Monkey 3:\n" +
+    "  Starting items: 86, 61, 67, 88, 94, 69, 56, 91\n" +
+    "  Operation: new = old + 7\n" +
+    "  Test: divisible by 11\n" +
+    "    If true: throw to monkey 6\n" +
+    "    If false: throw to monkey 7\n" +
+    "\n" +
+    "Monkey 4:\n" +
+    "  Starting items: 76, 50, 51\n" +
+    "  Operation: new = old * old\n" +
+    "  Test: divisible by 19\n" +
+    "    If true: throw to monkey 2\n" +
+    "    If false: throw to monkey 5\n" +
+    "\n" +
+    "Monkey 5:\n" +
+    "  Starting items: 77, 76\n" +
+    "  Operation: new = old + 8\n" +
+    "  Test: divisible by 17\n" +
+    "    If true: throw to monkey 2\n" +
+    "    If false: throw to monkey 1\n" +
+    "\n" +
+    "Monkey 6:\n" +
+    "  Starting items: 74\n" +
+    "  Operation: new = old * 2\n" +
+    "  Test: divisible by 5\n" +
+    "    If true: throw to monkey 4\n" +
+    "    If false: throw to monkey 7\n" +
+    "\n" +
+    "Monkey 7:\n" +
+    "  Starting items: 86, 85, 52, 86, 91, 95\n" +
+    "  Operation: new = old + 6\n" +
+    "  Test: divisible by 7\n" +
+    "    If true: throw to monkey 4\n" +
+    "    If false: throw to monkey 5";
 }
