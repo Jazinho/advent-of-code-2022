@@ -7,7 +7,8 @@ import java.util.stream.Stream;
 public class Day12Main {
 
   public static final String START_MARKER = "S";
-  public static final String END_MARKER = "z";
+  public static final String END_MARKER = "E";
+  public static final String z_MARKER = "z";
   public static int mapWidth;
   public static int mapHeigth;
   public static ArrayList<ArrayList<String>> map = new ArrayList<>();
@@ -34,57 +35,71 @@ public class Day12Main {
       }
     }
 
-    List<Map.Entry<Integer, Integer>> result = visit(curX, curY, new HashSet<>(), new LinkedList<>());
-    System.out.println(result.size());
+    Integer shortestPath = visit(curX, curY, new HashMap<>(), 0);
+    System.out.println(shortestPath);
   }
 
-  private static List<Map.Entry<Integer, Integer>> visit(
+  private static Integer visit(
     int curX,
     int curY,
-    Set<Map.Entry<Integer, Integer>> visitedPositions,
-    LinkedList<Map.Entry<Integer, Integer>> currentPath
+    Map<Map.Entry<Integer, Integer>, Integer> visitedPositions,
+    int curPathLen
   ) {
     String currentElevation = map.get(curY).get(curX);
     currentElevation = currentElevation.equals(START_MARKER) ? "a" : currentElevation;
     Map.Entry<Integer, Integer> currentPos = Map.entry(curX, curY);
+    if (map.get(curY).get(curX).equals(z_MARKER)) {
+      return curPathLen + 1;
+    }
     if (map.get(curY).get(curX).equals(END_MARKER)) {
-      currentPath.add(currentPos);
-      return currentPath;
+      return curPathLen;
     }
 
-    visitedPositions = new HashSet<>(visitedPositions);
-    visitedPositions.add(currentPos);
-    currentPath = new LinkedList<>(currentPath);
-    currentPath.add(currentPos);
-    List<Map.Entry<Integer, Integer>> leftPath = null;
-    if (curX > 0 && !visitedPositions.contains(Map.entry(curX - 1, curY)) &&
-      map.get(curY).get(curX - 1).codePointAt(0) <= currentElevation.codePointAt(0) + 1) {
-      leftPath = visit(curX - 1, curY, visitedPositions, currentPath);
+    if (visitedPositions.containsKey(currentPos)) {
+      Integer bestDistanceSoFar = visitedPositions.get(currentPos);
+      if (curPathLen < bestDistanceSoFar) {
+        visitedPositions.put(currentPos, curPathLen);
+      } else {
+        return null;
+      }
+    } else {
+      visitedPositions.put(currentPos, curPathLen);
     }
 
-    List<Map.Entry<Integer, Integer>> rightPath = null;
-    if (curX < mapWidth - 1 && !visitedPositions.contains(Map.entry(curX + 1, curY)) &&
-      map.get(curY).get(curX + 1).codePointAt(0) <= currentElevation.codePointAt(0) + 1) {
-      rightPath = visit(curX + 1, curY, visitedPositions, currentPath);
+    Integer leftPathLen = null;
+    if (curX > 0 &&
+      map.get(curY).get(curX - 1).charAt(0) <= currentElevation.charAt(0) + 1) {
+      leftPathLen = visit(curX - 1, curY, visitedPositions, curPathLen + 1);
+    }
+
+    Integer rightPathLen = null;
+    if (curX < mapWidth - 1 &&
+      map.get(curY).get(curX + 1).charAt(0) <= currentElevation.charAt(0) + 1) {
+      rightPathLen = visit(curX + 1, curY, visitedPositions, curPathLen + 1);
     }
 
     // Y DECREASED
-    List<Map.Entry<Integer, Integer>> upPath = null;
-    if (curY > 0 && !visitedPositions.contains(Map.entry(curX, curY - 1)) &&
-      map.get(curY - 1).get(curX).codePointAt(0) <= currentElevation.codePointAt(0) + 1) {
-      upPath = visit(curX, curY - 1, visitedPositions, currentPath);
+    Integer upPathLen = null;
+    if (curY > 0 &&
+      map.get(curY - 1).get(curX).charAt(0) <= currentElevation.charAt(0) + 1) {
+      upPathLen = visit(curX, curY - 1, visitedPositions, curPathLen + 1);
     }
 
     // Y INCREASED
-    List<Map.Entry<Integer, Integer>> downPath = null;
-    if (curY < mapHeigth - 1 && !visitedPositions.contains(Map.entry(curX, curY + 1)) &&
-      map.get(curY + 1).get(curX).codePointAt(0) <= currentElevation.codePointAt(0) + 1) {
-      downPath = visit(curX, curY + 1, visitedPositions, currentPath);
+    Integer downPathLen = null;
+    if (curY < mapHeigth - 1 &&
+      map.get(curY + 1).get(curX).charAt(0) <= currentElevation.charAt(0) + 1) {
+      downPathLen = visit(curX, curY + 1, visitedPositions, curPathLen + 1);
     }
 
-    Optional<List<Map.Entry<Integer, Integer>>> shortest = Stream.of(leftPath, rightPath, upPath, downPath)
-      .filter(Objects::nonNull)
-      .min(Comparator.comparingInt(List::size));
+    Optional<Integer> shortest = Stream.of(
+      leftPathLen,
+      rightPathLen,
+      upPathLen,
+      downPathLen
+    )
+    .filter(Objects::nonNull)
+    .min(Integer::compare);
 
     return shortest.orElse(null);
   }
