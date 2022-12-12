@@ -19,24 +19,26 @@ public class Day12Main {
     String[] lines = INPUT.split("\n");
     mapHeigth = lines.length;
     mapWidth = lines[0].length();
-    int curX = 0, curY = 0;
+    List<Map.Entry<Integer, Integer>> startingPositions = new LinkedList<>();
 
     for (int l = 0; l < lines.length; l++) {
       ArrayList<String> letters = Arrays.stream(lines[l].split("")).collect(Collectors.toCollection(ArrayList::new));
       map.add(letters);
 
-      if (lines[l].contains(START_MARKER)) {
-        for (int i = 0; i < lines[l].length(); i++) {
-          if (letters.get(i).equals(START_MARKER)) {
-            curY = l;
-            curX = i;
-          }
+      for (int i = 0; i < lines[l].length(); i++) {
+        if (letters.get(i).equals(START_MARKER) || letters.get(i).equals("a")) {
+          startingPositions.add(Map.entry(i, l));
         }
       }
     }
 
-    Integer shortestPath = visit(curX, curY, new HashMap<>(), 0);
-    System.out.println(shortestPath);
+    Map<Map.Entry<Integer, Integer>, Integer> visitedPositions = new HashMap<>();
+    Integer shortestPaths = startingPositions.stream()
+      .map(pos -> visit(pos.getKey(), pos.getValue(), visitedPositions, 0))
+      .filter(Objects::nonNull)
+      .min(Comparator.comparingInt(e -> e))
+      .orElse(null);
+    System.out.println(shortestPaths);
   }
 
   private static Integer visit(
@@ -68,27 +70,27 @@ public class Day12Main {
 
     Integer leftPathLen = null;
     if (curX > 0 &&
-      map.get(curY).get(curX - 1).charAt(0) <= currentElevation.charAt(0) + 1) {
+      isAccessible(curX - 1, curY, map, currentElevation)) {
       leftPathLen = visit(curX - 1, curY, visitedPositions, curPathLen + 1);
     }
 
     Integer rightPathLen = null;
     if (curX < mapWidth - 1 &&
-      map.get(curY).get(curX + 1).charAt(0) <= currentElevation.charAt(0) + 1) {
+      isAccessible(curX + 1, curY, map, currentElevation)) {
       rightPathLen = visit(curX + 1, curY, visitedPositions, curPathLen + 1);
     }
 
     // Y DECREASED
     Integer upPathLen = null;
     if (curY > 0 &&
-      map.get(curY - 1).get(curX).charAt(0) <= currentElevation.charAt(0) + 1) {
+      isAccessible(curX, curY - 1, map, currentElevation)) {
       upPathLen = visit(curX, curY - 1, visitedPositions, curPathLen + 1);
     }
 
     // Y INCREASED
     Integer downPathLen = null;
     if (curY < mapHeigth - 1 &&
-      map.get(curY + 1).get(curX).charAt(0) <= currentElevation.charAt(0) + 1) {
+      isAccessible(curX, curY + 1, map, currentElevation)) {
       downPathLen = visit(curX, curY + 1, visitedPositions, curPathLen + 1);
     }
 
@@ -98,9 +100,15 @@ public class Day12Main {
       upPathLen,
       downPathLen
     )
-    .filter(Objects::nonNull)
-    .min(Integer::compare);
+      .filter(Objects::nonNull)
+      .min(Integer::compare);
 
     return shortest.orElse(null);
+  }
+
+  private static boolean isAccessible(int newX, int newY, ArrayList<ArrayList<String>> map, String currentElevation) {
+    String desiredElevation = map.get(newY).get(newX);
+    desiredElevation = desiredElevation.equals(END_MARKER) ? "z" : desiredElevation;
+    return desiredElevation.charAt(0) <= currentElevation.charAt(0) + 1;
   }
 }

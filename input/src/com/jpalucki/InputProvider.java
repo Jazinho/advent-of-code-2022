@@ -6,12 +6,13 @@ public class InputProvider {
     return INPUT;
   }
 
-  private static final String INPUTa =
+  private static final String INPUT_test =
     "Sabqponm\n" +
     "abcryxxl\n" +
     "accszExk\n" +
     "acctuvwj\n" +
     "abdefghi";
+
   private static final String INPUT = "abcccccccccccaaaaacccccccaaaaaaccccccccccccccccccccccccccccccccaaaaaaaaaaaaaacccccccccccccccccccaaaaaacccccccacccccccccaaccaaccccccccccccccccccccccccccccccaaaaaa\n" +
     "abcccccccccccaaaaaaacccccaaaaaaccccccccaaccccccccccaaaaccccccccaaaaaaaaaaaaaccccccccccccccccccccaaaaaaccccaaaacccccccccaaaaaaccccccccccccccccccccccccccccccccaaaa\n" +
     "abccccccccccaaaaaaaacccccaaaaaccccccccaaaacccccccccaaaacccccccccccaaaaaaacccccccccccccccccccccccaaaaacccccaaaaaaccccccccaaaaacccccccccccaaaccccccccccccccccccaaaa\n" +
