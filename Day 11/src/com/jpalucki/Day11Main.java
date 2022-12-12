@@ -14,6 +14,7 @@ public class Day11Main {
     ArrayList<Monkey> monkeys = new ArrayList<>();
 
     String[] monkeysInputs = INPUT.split("\n\n");
+    BigInteger multiplicationOfAll = BigInteger.ONE;
     for (String monkeyInput : monkeysInputs) {
       String[] monkeyLines = monkeyInput.split("\n");
       String[] items = monkeyLines[1].substring(2 + ITEMS_LIST_PREFIX.length()).split(",");
@@ -30,21 +31,26 @@ public class Day11Main {
           .map(Long::parseLong)
           .map(BigInteger::valueOf)
           .collect(Collectors.toList())),
-        (item) -> item.mod(divisibleBy).intValue() == 0 ? monkeyIf : monkeyElse,
-        sign.equals("*") ?
-          (item) -> item.multiply(getVal(item, val)) :
-          (item) -> item.add(getVal(item, val))
+        divisibleBy,
+        monkeyIf,
+        monkeyElse,
+        sign,
+        val
       );
       monkeys.add(monkey);
+      multiplicationOfAll = multiplicationOfAll.multiply(divisibleBy);
     }
 
-    for (int i = 1; i <= 1000; i++) {
+    System.out.println(System.currentTimeMillis()/1000);
+    for (int i = 1; i <= 10000; i++) {
       System.out.println("iteartion " + i);
+
       for (Monkey monkey : monkeys) {
-        BigInteger updatedItem;
-        while ((updatedItem = monkey.inspectItem()) != null) {
+        BigInteger updatedItem = optimize(monkey.inspectItem(), multiplicationOfAll);
+        while (updatedItem != null) {
           int nextMonkeyNo = monkey.getDestMonkeyNo(updatedItem);
           monkeys.get(nextMonkeyNo).addItem(updatedItem);
+          updatedItem = optimize(monkey.inspectItem(), multiplicationOfAll);
         }
       }
     }
@@ -54,8 +60,11 @@ public class Day11Main {
     }
   }
 
-  private static BigInteger getVal(BigInteger item, String input) {
-    return input.equals("old") ? item : BigInteger.valueOf(Long.parseLong(input));
+  private static BigInteger optimize(BigInteger item, BigInteger multiplicationOfAll) {
+    if (item != null) {
+      item = item.divideAndRemainder(multiplicationOfAll)[1];
+    }
+    return item;
   }
 
 }
