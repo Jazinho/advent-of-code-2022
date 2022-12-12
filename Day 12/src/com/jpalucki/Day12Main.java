@@ -33,12 +33,12 @@ public class Day12Main {
     }
 
     Map<Map.Entry<Integer, Integer>, Integer> visitedPositions = new HashMap<>();
-    Integer shortestPaths = startingPositions.stream()
+    Integer shortestPath = startingPositions.stream()
       .map(pos -> visit(pos.getKey(), pos.getValue(), visitedPositions, 0))
       .filter(Objects::nonNull)
       .min(Comparator.comparingInt(e -> e))
       .orElse(null);
-    System.out.println(shortestPaths);
+    System.out.println(shortestPath);
   }
 
   private static Integer visit(
