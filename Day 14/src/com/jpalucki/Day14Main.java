@@ -41,35 +41,37 @@ public class Day14Main {
       rocks.add(singleRock);
     }
 
-    minX = minX - 1;
-    int mapWidth = maxX - minX + 1;
+    minX = minX - 1; // start map with empty column on the left, not with first rock edge
+    maxY = maxY + 2; // add space for a floor
+    int mapWidth = maxX - minX + 1 + 1; //add empty column on the right too
     int mapHeigth = maxY + 1;
     String[][] map = new String[mapHeigth][mapWidth];
-    for (int i = 0; i < minY; i++){
+    for (int i = 0; i < minY; i++) {
       for (int j = 0; j < mapWidth; j++) {
         map[i][j] = ".";
       }
     }
     initRocks(map, rocks, minX);
-    drawMap(map);
+    initFloor(map);
     simulateSand(map, minX, maxY);
+    drawMap(map);
   }
 
   private static void initRocks(String[][] map, List<List<Map.Entry<Integer, Integer>>> rocks, int mapShiftOnX) {
-    for(List<Map.Entry<Integer, Integer>> rock: rocks) {
-      for(int el = 0; el < rock.size() - 1; el++){
+    for (List<Map.Entry<Integer, Integer>> rock : rocks) {
+      for (int el = 0; el < rock.size() - 1; el++) {
         Map.Entry<Integer, Integer> curPoint = rock.get(el);
         Map.Entry<Integer, Integer> nextPoint = rock.get(el + 1);
         if (curPoint.getKey().equals(nextPoint.getKey())) {
           int size = Math.abs(curPoint.getValue() - nextPoint.getValue()) + 1;
           int lower = curPoint.getValue() < nextPoint.getValue() ? curPoint.getValue() : nextPoint.getValue();
-          for (int i = 0; i < size; i++){
+          for (int i = 0; i < size; i++) {
             map[lower + i][curPoint.getKey() - mapShiftOnX] = ROCK_MARKER;
           }
         } else {
           int size = Math.abs(curPoint.getKey() - nextPoint.getKey()) + 1;
           int lower = curPoint.getKey() < nextPoint.getKey() ? curPoint.getKey() : nextPoint.getKey();
-          for (int i = 0; i < size; i++){
+          for (int i = 0; i < size; i++) {
             map[curPoint.getValue()][lower + i - mapShiftOnX] = ROCK_MARKER;
           }
         }
@@ -77,16 +79,22 @@ public class Day14Main {
     }
   }
 
-  private static void drawMap(String[][] map){
-    for (String[] row: map) {
-      for (String cell: row){
+  private static void initFloor(String[][] map) {
+    for (int el = 0; el < map[0].length; el++) {
+      map[map.length - 1][el] = ROCK_MARKER;
+    }
+  }
+
+  private static void drawMap(String[][] map) {
+    for (String[] row : map) {
+      for (String cell : row) {
         System.out.print(cell == null ? "." : cell);
       }
       System.out.println();
     }
   }
 
-  private static void simulateSand(String[][] map, int mapShiftOnX, int maxY){
+  private static void simulateSand(String[][] map, int mapShiftOnX, int maxY) {
     int startingPositionX = STARTING_POINT_POS - mapShiftOnX;
     int sandCounter = 0;
     boolean sandOverflow = false;
@@ -95,21 +103,24 @@ public class Day14Main {
       int sandCurPosX = startingPositionX, sandCurPosY = 0;
 
       while (true) {
-        if (sandCurPosY >= maxY) {
+        if (sandCurPosY >= maxY ) {
           sandOverflow = true;
           break;
         }
 
-        if (map[sandCurPosY+1][sandCurPosX] == null || map[sandCurPosY+1][sandCurPosX].equals(".")){
+        if (map[sandCurPosY + 1][sandCurPosX] == null || map[sandCurPosY + 1][sandCurPosX].equals(".")) {
           sandCurPosY++;
-        } else if (map[sandCurPosY+1][sandCurPosX-1] == null || map[sandCurPosY+1][sandCurPosX-1].equals(".")){
+        } else if (sandCurPosX >= 1 && (map[sandCurPosY + 1][sandCurPosX - 1] == null || map[sandCurPosY + 1][sandCurPosX - 1].equals("."))) {
           sandCurPosY++;
           sandCurPosX--;
-        } else if (map[sandCurPosY+1][sandCurPosX+1] == null || map[sandCurPosY+1][sandCurPosX+1].equals(".")){
+        } else if (sandCurPosX + 1 < map[sandCurPosY + 1].length && (map[sandCurPosY + 1][sandCurPosX + 1] == null || map[sandCurPosY + 1][sandCurPosX + 1].equals("."))) {
           sandCurPosY++;
           sandCurPosX++;
         } else {
           map[sandCurPosY][sandCurPosX] = "o";
+          if (sandCurPosY == 0 && sandCurPosX == startingPositionX){
+            sandOverflow = true;
+          }
           break;
         }
       }
@@ -118,5 +129,8 @@ public class Day14Main {
     }
 
     System.out.println("Sand no. was overflow: " + sandCounter);
+    System.out.println("\n!!! IMPORTANT NOTE !!!");
+    System.out.println("For the second part of challenge remember to count sand that is spreaded out of map borders.");
+    System.out.println("To do so, use Sigma function (form of N + N-1 + ... + 1\n");
   }
 }
