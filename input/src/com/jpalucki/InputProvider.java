@@ -6,52 +6,171 @@ public class InputProvider {
     return INPUT;
   }
 
-  private static final String INPUT_test =
-    "Sabqponm\n" +
-    "abcryxxl\n" +
-    "accszExk\n" +
-    "acctuvwj\n" +
-    "abdefghi";
+  private static final String INPUT_test = "498,4 -> 498,6 -> 496,6\n" +
+    "503,4 -> 502,4 -> 502,9 -> 494,9";
 
-  private static final String INPUT = "abcccccccccccaaaaacccccccaaaaaaccccccccccccccccccccccccccccccccaaaaaaaaaaaaaacccccccccccccccccccaaaaaacccccccacccccccccaaccaaccccccccccccccccccccccccccccccaaaaaa\n" +
-    "abcccccccccccaaaaaaacccccaaaaaaccccccccaaccccccccccaaaaccccccccaaaaaaaaaaaaaccccccccccccccccccccaaaaaaccccaaaacccccccccaaaaaaccccccccccccccccccccccccccccccccaaaa\n" +
-    "abccccccccccaaaaaaaacccccaaaaaccccccccaaaacccccccccaaaacccccccccccaaaaaaacccccccccccccccccccccccaaaaacccccaaaaaaccccccccaaaaacccccccccccaaaccccccccccccccccccaaaa\n" +
-    "abccccccccccaaaaaaaaccccccaaaaacccccccaaaacccccccccaaaacccccaaaccccaaaaaaccccccccccccccccccccccccaaaaacccccaaaaacccccccaaaaaacccccccccccaaaacccccccccccccccccaaaa\n" +
-    "abccccccccccaaaaaaccccccccaaaaacccccccaaaaccccccccccaaacccccaaaaccaaaaaaaacccccccccccccccccccccccaaaaaccccaaaaacccccccaaaaaaaaccccccccccaaaaccaaccccccccccccaaaaa\n" +
-    "abcccccccccccccaaaccccccccccccccccccccccccccccccccccccccccccaaaaccaaaaaaaaccccccccccccccccccccccccccccccccaccaaccccaaaaaaaaaaacccccccccccaaaaaaccccccccccccccaccc\n" +
-    "abcacccccccccccccaaaccccccccccccccaaacccccccccccccccccccccccaaaccaaaacccaaacccccccccccccccccccccccaacccccccccccccccaaacccaaccccccccccccccaaaalllllccccccccccccccc\n" +
-    "abaacccccccccccccaaaaaacccccccccccaaaccccccccccccccccccccccccccccaaaccccaaaccccccccccccccccccccccaaccccccccccccccccaaaaaaaaccccccccccccccckklllllllccccaaaccccccc\n" +
-    "abaaaaacccccccccaaaaaaacccccccccaaaaaaaacccccaacccccccccccccccccccccccccaaaccccccccaacccccccccaaaaacaacaacaacccccaaaaaaaaccccccccccccaaakkkkllllllllcccaaaccccccc\n" +
-    "abaaaaaccccccccaaaaaaaacccccccccaaaaaaaacccccaaaaaacccccccccccccccccccccaaaccccccaaaacacccccccaaaaaaaacaaaaaccccaaaaaaaaaccccccccckkkkkkkkkklsssslllcccaaaaaacccc\n" +
-    "abaaaccccccccccaaaaaaacccccccccccaaaaacccccccaaaaaaccccccccccccccccccaaaaaaaaccccaaaaaacccccccccaaaaacaaaaacccccaaaaaaaacccaaaccjjkkkkkkkkkssssssslllcccaaaaacccc\n" +
-    "abaaaccccccccccccaaaaaacccccaacccaaaaaaccccaaaaaaaccaaaccccccccccccccaaaaaaaacccccaaaacccccccccaaaaaccaaaaaacccccccaaaaaaccaaaajjjjkkkkkkssssssssslllcddaaaaccccc\n" +
-    "abcaaacccccccccccaaaaaacaaacaacccaaaaaaccccaaaaaaaaaaaaaaccccccccccccccaaaaaccccccaaaaccccaaaaaaacaaacccaaaaaaacccaaaaaaaccaaajjjjrrrrrrssssuuuussqmmddddaaaccccc\n" +
-    "abccaacccccccccccaaccccccaaaaacccaaaccaccccaaaaaaaaaaaaaacccccccccccccaaaaaacccccaacaaccccaaaaacccaaccccacccaaaaaaaaaccaaccaaajjjrrrrrrrrssuuuuuvqqmmmdddaaaccccc\n" +
-    "abccccccccaaccccccccccccccaaaaaacccccccccccccaaaaaaaaaaaccccccccccccccaaaaaacccccccccccccaaaaaaccccccccccccaaaaaaaaaacccccccccjjjrrruuuuuuuuuuuvvqqmmmmddddaccccc\n" +
-    "abaacccccaaaaccccccccccccaaaaaaacccccccccccccaacccccaaaaacccccccccccccaccaaacccccccccccccaaaaaacccccccccccaaaaaaaaccccccccccccjjjrrruuuuuuuuxyyvvqqqmmmddddcccccc\n" +
-    "abaacccccaaaacccccccccccaaaaaaccccccccaaccccccccacccaaaaacccccccccccccccccccccccccccccccccaaaaacccccccccccaaaaaaacccccccccccccjjjrrttuxxxxuxxyyvvqqqqmmmmddddcccc\n" +
-    "abaacccccaaaacccccccccccaacaaacccccaaaaacccaaaaaaaccccccccccccccccccccccccccccccccccccccccaaacccccccccccccccaaaaaaccccccccccccjjjrrtttxxxxxxyyyvvqqqqqmmmmdddcccc\n" +
-    "abacccccccccccccccccccccccccaaccccccaaaaaccaaaaaaaccccccccaaccccccccccccccccccccccccccccccccccccccccccccccccaaaaaaccccccccccccjjjqrrttxxxxxxyyyvvvvqqqqmmmdddcccc\n" +
-    "abccccccccccccccccccccccccccccccccccaaaaaccaaaaaaacccccccaaaccccccccccaaaccccccccccccccccccaaaccccccccccccccaaccccccccccaaccccjjjqqqtttxxxxxyyyyyvvvqqqqmmmeeeccc\n" +
-    "SbaaccccccaccaaacccccccccccccccccccaaaaacccaaaaaaaaccccaaaaaaaacccccccaaacaaccccccccccccccaaaaaaccccccccccccccccccccccaaaaaaccciiiqqqttxxxxEzyyyyyvvvqqqnnneeeccc\n" +
-    "abaaccccccaaaaaaccccccccccccccccccccccaaccaaaaaaaaaacccaaaaaaaacccccaaaaaaaaccccccccccccccaaaaaaccccccccccccccccccccccaaaaaaccciiiqqtttxxxyyyyyyyvvvvqqqnnneeeccc\n" +
-    "abaaaaacccaaaaaaccccccccccccccccccccccccccaaaaaaaaaaccccaaaaaaccccccaaaaaaaaccccccccccccccaaaaaacccccccccccccccccccccccaaaaacciiiqqqttxxyyyyyyywvvvvrrrqnnneeeccc\n" +
-    "abaaaaacccaaaaaaaccccccccaaaccccccccccccccaacaaaccccccccaaaaaaccccccaaaaaaaccccccccccccccccaaaaaccccccccccccccccccccccaaaaaccciiiqqtttxxxyyyyywwwvrrrrrnnneeecccc\n" +
-    "abaaaccccaaaaaaaaccccccccaaaacccccccccccccccccaaccccccccaaaaaaccccccccaaaaaccccccccccccccccaacaaccccccccccccccccccccccaaaaaccciiqqqttxxxwwwwyyywwrrrrnnnnneeecccc\n" +
-    "abaaaccccaaaaaaaaccccccccaaaacccccaaaaacccccccaaccccccccaaccaacccccccaaacaaacccccccccccccccccccccccccccccccccccccccccccccccccciiqqqtttwwwwwwywwwrrrrnnnnneeeccccc\n" +
-    "abcaaaccccccaaaccccccccccaaaccccccaaaaacccccccccccccaaaaccccccccccccccaacccccccccccccccccccccccccccccccaaaacccccccccccccccccciiiqqqtttssssswwwwwrrrnnnneeeecccccc\n" +
-    "abccaaccccccaaaccccccccccccccccccaaaaaacccccccccccccaaaaccccccccccccccccccccccccccccccccccccccccccccccaaaaacccccccccccccccccciiiqqqqtssssssswwwwrronnnfeeeacccccc\n" +
-    "abcccccccccccccccccccccccccccccccaaaaaacccccccccccccaaaaccccccccccccccccccccccccccccccccccccccccccccccaaaaaaccccccccccccccccciiiiqqppssssssswwwwrroonfffeaacccccc\n" +
-    "abcccccccccccccccccccccccccccccccaaaaaacaaaccccccccccaacccccccccccccccccccccccccccccccccaaacccccccccccaaaaaaccccccccccccccccccihhpppppppppsssssrrroonfffaaaaacccc\n" +
-    "abcccccccccccccccccccccccccccccccccaacccaaaaacccccccccccccccccccccccccccccccccccccccccccaaaaaaccccccccaaaaaccccccccccccccccccchhhhppppppppppssssrooofffaaaaaacccc\n" +
-    "abccccccccaaaccccccccccccccccccccccccccaaaaacccccccccccccccccccccccccccccccccccccaccccaaaaaaaaccccccccccaaacccccccccccccccccccchhhhhhhhhpppposssoooofffaaaaaccccc\n" +
-    "abccccccccaaaacccccaaccccccccccccccccccaaaaaccccccccccccccccccccccccaaccccccccccaaccccaaaaaaaacccccccccccccccccccccccccccccccccchhhhhhhhhgppooooooofffaaaaacccccc\n" +
-    "abaaccccccaaaacccccaacaaccccccccccccccccaaaaacccccccccccccccaacaaccaaaaaaccccaaaaacaacaaaaaaacccccccccccccccccccccccccccccccccccccchhhhhhgggooooooffffaaaaaaccccc\n" +
-    "abaaacccccaaaacccccaaaaaccccccccccccccccaaccccccccccccccccccaaaaaccaaaaaaccccaaaaaaaacccaaaaaccccccccccccccccccccccccaaacaacccccccccccccgggggooooffffccccaacccccc\n" +
-    "abaaaccccccccccccaaaaaaccccaaccccccccccccccccccaaacccccccccccaaaaaaaaaaaacaacccaaaaaccccaacaaacccccccccccccccccccccccaaaaaaccccccccccccccaggggggggfffcccccccccccc\n" +
-    "abaaaccccccccccccaaaaaaaacaaaaccccccccaaaccccccaaaacccccccccaaaaaaaaaaaaaaaaccaaaaacccccaaaaaccccccccccccccaaccccccccaaaaaaccccccccccccccaagggggggfccccccccccccca\n" +
-    "abaacccccccccccccaccaaaaacaaaaccccccccaaaccccccaaaacccccccccaaaaccaaaaaaaaaaccaacaaaccccccaaaccccccccccccaaaaaacccccaaaaaaacccccccccccccaaaaccggggcccccccccccccaa\n" +
-    "abaacccccccccccccccaaacaccaaaacccccaaaaaaaaccccaaaccccccccccccaaccaaaaaaaacccccccaacccccaacaaaaacccccccccaaaaaacccccaaaaaaaaccccccccccccaaaccccccccccccccccaaacaa\n" +
-    "abcccccccccccccccccaaccccccccccccccaaaaaaaaccccccccccccccccccccaaaaaaaaaaaccccccccccccccaaaaaaaacccccccccaaaaaacccccaaaaaaaaccccccccccccacaccccccccccccccccaaaaaa\n" +
-    "abccccccccccccccccccccccccccccccccccaaaaaacccccccccccccccccccccaaaaaaaaaaaaccccccccccccccaaaaaaccccccccccaaaaaccccccccaaacccccccccccccccccccccccccccccccccccaaaaa";
+  private static final String INPUT = "471,144 -> 471,134 -> 471,144 -> 473,144 -> 473,140 -> 473,144 -> 475,144 -> 475,143 -> 475,144 -> 477,144 -> 477,142 -> 477,144 -> 479,144 -> 479,137 -> 479,144 -> 481,144 -> 481,134 -> 481,144 -> 483,144 -> 483,136 -> 483,144 -> 485,144 -> 485,134 -> 485,144\n" +
+    "475,166 -> 475,159 -> 475,166 -> 477,166 -> 477,156 -> 477,166 -> 479,166 -> 479,165 -> 479,166 -> 481,166 -> 481,156 -> 481,166 -> 483,166 -> 483,163 -> 483,166 -> 485,166 -> 485,156 -> 485,166 -> 487,166 -> 487,159 -> 487,166\n" +
+    "513,69 -> 513,71 -> 511,71 -> 511,76 -> 522,76 -> 522,71 -> 517,71 -> 517,69\n" +
+    "520,87 -> 524,87\n" +
+    "480,121 -> 480,122 -> 498,122 -> 498,121\n" +
+    "520,56 -> 520,60 -> 517,60 -> 517,66 -> 528,66 -> 528,60 -> 523,60 -> 523,56\n" +
+    "484,147 -> 484,149 -> 483,149 -> 483,153 -> 489,153 -> 489,149 -> 488,149 -> 488,147\n" +
+    "493,24 -> 498,24\n" +
+    "496,22 -> 501,22\n" +
+    "475,166 -> 475,159 -> 475,166 -> 477,166 -> 477,156 -> 477,166 -> 479,166 -> 479,165 -> 479,166 -> 481,166 -> 481,156 -> 481,166 -> 483,166 -> 483,163 -> 483,166 -> 485,166 -> 485,156 -> 485,166 -> 487,166 -> 487,159 -> 487,166\n" +
+    "480,118 -> 480,111 -> 480,118 -> 482,118 -> 482,116 -> 482,118 -> 484,118 -> 484,111 -> 484,118 -> 486,118 -> 486,110 -> 486,118 -> 488,118 -> 488,117 -> 488,118\n" +
+    "508,79 -> 512,79\n" +
+    "486,104 -> 486,105 -> 493,105 -> 493,104\n" +
+    "497,129 -> 502,129\n" +
+    "474,34 -> 478,34\n" +
+    "480,118 -> 480,111 -> 480,118 -> 482,118 -> 482,116 -> 482,118 -> 484,118 -> 484,111 -> 484,118 -> 486,118 -> 486,110 -> 486,118 -> 488,118 -> 488,117 -> 488,118\n" +
+    "471,144 -> 471,134 -> 471,144 -> 473,144 -> 473,140 -> 473,144 -> 475,144 -> 475,143 -> 475,144 -> 477,144 -> 477,142 -> 477,144 -> 479,144 -> 479,137 -> 479,144 -> 481,144 -> 481,134 -> 481,144 -> 483,144 -> 483,136 -> 483,144 -> 485,144 -> 485,134 -> 485,144\n" +
+    "508,87 -> 512,87\n" +
+    "512,53 -> 512,43 -> 512,53 -> 514,53 -> 514,48 -> 514,53 -> 516,53 -> 516,44 -> 516,53 -> 518,53 -> 518,50 -> 518,53 -> 520,53 -> 520,46 -> 520,53\n" +
+    "499,20 -> 504,20\n" +
+    "475,166 -> 475,159 -> 475,166 -> 477,166 -> 477,156 -> 477,166 -> 479,166 -> 479,165 -> 479,166 -> 481,166 -> 481,156 -> 481,166 -> 483,166 -> 483,163 -> 483,166 -> 485,166 -> 485,156 -> 485,166 -> 487,166 -> 487,159 -> 487,166\n" +
+    "480,118 -> 480,111 -> 480,118 -> 482,118 -> 482,116 -> 482,118 -> 484,118 -> 484,111 -> 484,118 -> 486,118 -> 486,110 -> 486,118 -> 488,118 -> 488,117 -> 488,118\n" +
+    "475,166 -> 475,159 -> 475,166 -> 477,166 -> 477,156 -> 477,166 -> 479,166 -> 479,165 -> 479,166 -> 481,166 -> 481,156 -> 481,166 -> 483,166 -> 483,163 -> 483,166 -> 485,166 -> 485,156 -> 485,166 -> 487,166 -> 487,159 -> 487,166\n" +
+    "471,144 -> 471,134 -> 471,144 -> 473,144 -> 473,140 -> 473,144 -> 475,144 -> 475,143 -> 475,144 -> 477,144 -> 477,142 -> 477,144 -> 479,144 -> 479,137 -> 479,144 -> 481,144 -> 481,134 -> 481,144 -> 483,144 -> 483,136 -> 483,144 -> 485,144 -> 485,134 -> 485,144\n" +
+    "496,125 -> 501,125\n" +
+    "512,53 -> 512,43 -> 512,53 -> 514,53 -> 514,48 -> 514,53 -> 516,53 -> 516,44 -> 516,53 -> 518,53 -> 518,50 -> 518,53 -> 520,53 -> 520,46 -> 520,53\n" +
+    "511,26 -> 516,26\n" +
+    "475,166 -> 475,159 -> 475,166 -> 477,166 -> 477,156 -> 477,166 -> 479,166 -> 479,165 -> 479,166 -> 481,166 -> 481,156 -> 481,166 -> 483,166 -> 483,163 -> 483,166 -> 485,166 -> 485,156 -> 485,166 -> 487,166 -> 487,159 -> 487,166\n" +
+    "520,56 -> 520,60 -> 517,60 -> 517,66 -> 528,66 -> 528,60 -> 523,60 -> 523,56\n" +
+    "520,56 -> 520,60 -> 517,60 -> 517,66 -> 528,66 -> 528,60 -> 523,60 -> 523,56\n" +
+    "471,144 -> 471,134 -> 471,144 -> 473,144 -> 473,140 -> 473,144 -> 475,144 -> 475,143 -> 475,144 -> 477,144 -> 477,142 -> 477,144 -> 479,144 -> 479,137 -> 479,144 -> 481,144 -> 481,134 -> 481,144 -> 483,144 -> 483,136 -> 483,144 -> 485,144 -> 485,134 -> 485,144\n" +
+    "502,83 -> 506,83\n" +
+    "496,87 -> 500,87\n" +
+    "483,26 -> 488,26\n" +
+    "487,131 -> 492,131\n" +
+    "475,166 -> 475,159 -> 475,166 -> 477,166 -> 477,156 -> 477,166 -> 479,166 -> 479,165 -> 479,166 -> 481,166 -> 481,156 -> 481,166 -> 483,166 -> 483,163 -> 483,166 -> 485,166 -> 485,156 -> 485,166 -> 487,166 -> 487,159 -> 487,166\n" +
+    "499,85 -> 503,85\n" +
+    "480,34 -> 484,34\n" +
+    "474,38 -> 478,38\n" +
+    "486,104 -> 486,105 -> 493,105 -> 493,104\n" +
+    "475,166 -> 475,159 -> 475,166 -> 477,166 -> 477,156 -> 477,166 -> 479,166 -> 479,165 -> 479,166 -> 481,166 -> 481,156 -> 481,166 -> 483,166 -> 483,163 -> 483,166 -> 485,166 -> 485,156 -> 485,166 -> 487,166 -> 487,159 -> 487,166\n" +
+    "494,90 -> 494,92 -> 489,92 -> 489,100 -> 504,100 -> 504,92 -> 497,92 -> 497,90\n" +
+    "475,166 -> 475,159 -> 475,166 -> 477,166 -> 477,156 -> 477,166 -> 479,166 -> 479,165 -> 479,166 -> 481,166 -> 481,156 -> 481,166 -> 483,166 -> 483,163 -> 483,166 -> 485,166 -> 485,156 -> 485,166 -> 487,166 -> 487,159 -> 487,166\n" +
+    "471,144 -> 471,134 -> 471,144 -> 473,144 -> 473,140 -> 473,144 -> 475,144 -> 475,143 -> 475,144 -> 477,144 -> 477,142 -> 477,144 -> 479,144 -> 479,137 -> 479,144 -> 481,144 -> 481,134 -> 481,144 -> 483,144 -> 483,136 -> 483,144 -> 485,144 -> 485,134 -> 485,144\n" +
+    "513,69 -> 513,71 -> 511,71 -> 511,76 -> 522,76 -> 522,71 -> 517,71 -> 517,69\n" +
+    "471,144 -> 471,134 -> 471,144 -> 473,144 -> 473,140 -> 473,144 -> 475,144 -> 475,143 -> 475,144 -> 477,144 -> 477,142 -> 477,144 -> 479,144 -> 479,137 -> 479,144 -> 481,144 -> 481,134 -> 481,144 -> 483,144 -> 483,136 -> 483,144 -> 485,144 -> 485,134 -> 485,144\n" +
+    "520,56 -> 520,60 -> 517,60 -> 517,66 -> 528,66 -> 528,60 -> 523,60 -> 523,56\n" +
+    "471,144 -> 471,134 -> 471,144 -> 473,144 -> 473,140 -> 473,144 -> 475,144 -> 475,143 -> 475,144 -> 477,144 -> 477,142 -> 477,144 -> 479,144 -> 479,137 -> 479,144 -> 481,144 -> 481,134 -> 481,144 -> 483,144 -> 483,136 -> 483,144 -> 485,144 -> 485,134 -> 485,144\n" +
+    "480,38 -> 484,38\n" +
+    "489,40 -> 493,40\n" +
+    "483,36 -> 487,36\n" +
+    "480,118 -> 480,111 -> 480,118 -> 482,118 -> 482,116 -> 482,118 -> 484,118 -> 484,111 -> 484,118 -> 486,118 -> 486,110 -> 486,118 -> 488,118 -> 488,117 -> 488,118\n" +
+    "508,131 -> 513,131\n" +
+    "517,85 -> 521,85\n" +
+    "494,131 -> 499,131\n" +
+    "475,166 -> 475,159 -> 475,166 -> 477,166 -> 477,156 -> 477,166 -> 479,166 -> 479,165 -> 479,166 -> 481,166 -> 481,156 -> 481,166 -> 483,166 -> 483,163 -> 483,166 -> 485,166 -> 485,156 -> 485,166 -> 487,166 -> 487,159 -> 487,166\n" +
+    "475,166 -> 475,159 -> 475,166 -> 477,166 -> 477,156 -> 477,166 -> 479,166 -> 479,165 -> 479,166 -> 481,166 -> 481,156 -> 481,166 -> 483,166 -> 483,163 -> 483,166 -> 485,166 -> 485,156 -> 485,166 -> 487,166 -> 487,159 -> 487,166\n" +
+    "512,53 -> 512,43 -> 512,53 -> 514,53 -> 514,48 -> 514,53 -> 516,53 -> 516,44 -> 516,53 -> 518,53 -> 518,50 -> 518,53 -> 520,53 -> 520,46 -> 520,53\n" +
+    "494,90 -> 494,92 -> 489,92 -> 489,100 -> 504,100 -> 504,92 -> 497,92 -> 497,90\n" +
+    "514,87 -> 518,87\n" +
+    "512,53 -> 512,43 -> 512,53 -> 514,53 -> 514,48 -> 514,53 -> 516,53 -> 516,44 -> 516,53 -> 518,53 -> 518,50 -> 518,53 -> 520,53 -> 520,46 -> 520,53\n" +
+    "512,53 -> 512,43 -> 512,53 -> 514,53 -> 514,48 -> 514,53 -> 516,53 -> 516,44 -> 516,53 -> 518,53 -> 518,50 -> 518,53 -> 520,53 -> 520,46 -> 520,53\n" +
+    "494,90 -> 494,92 -> 489,92 -> 489,100 -> 504,100 -> 504,92 -> 497,92 -> 497,90\n" +
+    "507,24 -> 512,24\n" +
+    "512,53 -> 512,43 -> 512,53 -> 514,53 -> 514,48 -> 514,53 -> 516,53 -> 516,44 -> 516,53 -> 518,53 -> 518,50 -> 518,53 -> 520,53 -> 520,46 -> 520,53\n" +
+    "471,40 -> 475,40\n" +
+    "480,118 -> 480,111 -> 480,118 -> 482,118 -> 482,116 -> 482,118 -> 484,118 -> 484,111 -> 484,118 -> 486,118 -> 486,110 -> 486,118 -> 488,118 -> 488,117 -> 488,118\n" +
+    "511,81 -> 515,81\n" +
+    "514,83 -> 518,83\n" +
+    "471,144 -> 471,134 -> 471,144 -> 473,144 -> 473,140 -> 473,144 -> 475,144 -> 475,143 -> 475,144 -> 477,144 -> 477,142 -> 477,144 -> 479,144 -> 479,137 -> 479,144 -> 481,144 -> 481,134 -> 481,144 -> 483,144 -> 483,136 -> 483,144 -> 485,144 -> 485,134 -> 485,144\n" +
+    "475,166 -> 475,159 -> 475,166 -> 477,166 -> 477,156 -> 477,166 -> 479,166 -> 479,165 -> 479,166 -> 481,166 -> 481,156 -> 481,166 -> 483,166 -> 483,163 -> 483,166 -> 485,166 -> 485,156 -> 485,166 -> 487,166 -> 487,159 -> 487,166\n" +
+    "475,166 -> 475,159 -> 475,166 -> 477,166 -> 477,156 -> 477,166 -> 479,166 -> 479,165 -> 479,166 -> 481,166 -> 481,156 -> 481,166 -> 483,166 -> 483,163 -> 483,166 -> 485,166 -> 485,156 -> 485,166 -> 487,166 -> 487,159 -> 487,166\n" +
+    "512,53 -> 512,43 -> 512,53 -> 514,53 -> 514,48 -> 514,53 -> 516,53 -> 516,44 -> 516,53 -> 518,53 -> 518,50 -> 518,53 -> 520,53 -> 520,46 -> 520,53\n" +
+    "465,40 -> 469,40\n" +
+    "512,53 -> 512,43 -> 512,53 -> 514,53 -> 514,48 -> 514,53 -> 516,53 -> 516,44 -> 516,53 -> 518,53 -> 518,50 -> 518,53 -> 520,53 -> 520,46 -> 520,53\n" +
+    "471,144 -> 471,134 -> 471,144 -> 473,144 -> 473,140 -> 473,144 -> 475,144 -> 475,143 -> 475,144 -> 477,144 -> 477,142 -> 477,144 -> 479,144 -> 479,137 -> 479,144 -> 481,144 -> 481,134 -> 481,144 -> 483,144 -> 483,136 -> 483,144 -> 485,144 -> 485,134 -> 485,144\n" +
+    "480,29 -> 490,29 -> 490,28\n" +
+    "475,166 -> 475,159 -> 475,166 -> 477,166 -> 477,156 -> 477,166 -> 479,166 -> 479,165 -> 479,166 -> 481,166 -> 481,156 -> 481,166 -> 483,166 -> 483,163 -> 483,166 -> 485,166 -> 485,156 -> 485,166 -> 487,166 -> 487,159 -> 487,166\n" +
+    "493,127 -> 498,127\n" +
+    "475,166 -> 475,159 -> 475,166 -> 477,166 -> 477,156 -> 477,166 -> 479,166 -> 479,165 -> 479,166 -> 481,166 -> 481,156 -> 481,166 -> 483,166 -> 483,163 -> 483,166 -> 485,166 -> 485,156 -> 485,166 -> 487,166 -> 487,159 -> 487,166\n" +
+    "504,26 -> 509,26\n" +
+    "492,20 -> 497,20\n" +
+    "477,36 -> 481,36\n" +
+    "475,166 -> 475,159 -> 475,166 -> 477,166 -> 477,156 -> 477,166 -> 479,166 -> 479,165 -> 479,166 -> 481,166 -> 481,156 -> 481,166 -> 483,166 -> 483,163 -> 483,166 -> 485,166 -> 485,156 -> 485,166 -> 487,166 -> 487,159 -> 487,166\n" +
+    "475,166 -> 475,159 -> 475,166 -> 477,166 -> 477,156 -> 477,166 -> 479,166 -> 479,165 -> 479,166 -> 481,166 -> 481,156 -> 481,166 -> 483,166 -> 483,163 -> 483,166 -> 485,166 -> 485,156 -> 485,166 -> 487,166 -> 487,159 -> 487,166\n" +
+    "505,81 -> 509,81\n" +
+    "512,53 -> 512,43 -> 512,53 -> 514,53 -> 514,48 -> 514,53 -> 516,53 -> 516,44 -> 516,53 -> 518,53 -> 518,50 -> 518,53 -> 520,53 -> 520,46 -> 520,53\n" +
+    "513,69 -> 513,71 -> 511,71 -> 511,76 -> 522,76 -> 522,71 -> 517,71 -> 517,69\n" +
+    "480,121 -> 480,122 -> 498,122 -> 498,121\n" +
+    "494,90 -> 494,92 -> 489,92 -> 489,100 -> 504,100 -> 504,92 -> 497,92 -> 497,90\n" +
+    "512,53 -> 512,43 -> 512,53 -> 514,53 -> 514,48 -> 514,53 -> 516,53 -> 516,44 -> 516,53 -> 518,53 -> 518,50 -> 518,53 -> 520,53 -> 520,46 -> 520,53\n" +
+    "512,53 -> 512,43 -> 512,53 -> 514,53 -> 514,48 -> 514,53 -> 516,53 -> 516,44 -> 516,53 -> 518,53 -> 518,50 -> 518,53 -> 520,53 -> 520,46 -> 520,53\n" +
+    "490,26 -> 495,26\n" +
+    "504,129 -> 509,129\n" +
+    "484,147 -> 484,149 -> 483,149 -> 483,153 -> 489,153 -> 489,149 -> 488,149 -> 488,147\n" +
+    "484,147 -> 484,149 -> 483,149 -> 483,153 -> 489,153 -> 489,149 -> 488,149 -> 488,147\n" +
+    "471,144 -> 471,134 -> 471,144 -> 473,144 -> 473,140 -> 473,144 -> 475,144 -> 475,143 -> 475,144 -> 477,144 -> 477,142 -> 477,144 -> 479,144 -> 479,137 -> 479,144 -> 481,144 -> 481,134 -> 481,144 -> 483,144 -> 483,136 -> 483,144 -> 485,144 -> 485,134 -> 485,144\n" +
+    "513,69 -> 513,71 -> 511,71 -> 511,76 -> 522,76 -> 522,71 -> 517,71 -> 517,69\n" +
+    "471,144 -> 471,134 -> 471,144 -> 473,144 -> 473,140 -> 473,144 -> 475,144 -> 475,143 -> 475,144 -> 477,144 -> 477,142 -> 477,144 -> 479,144 -> 479,137 -> 479,144 -> 481,144 -> 481,134 -> 481,144 -> 483,144 -> 483,136 -> 483,144 -> 485,144 -> 485,134 -> 485,144\n" +
+    "503,22 -> 508,22\n" +
+    "495,18 -> 500,18\n" +
+    "490,129 -> 495,129\n" +
+    "477,40 -> 481,40\n" +
+    "520,56 -> 520,60 -> 517,60 -> 517,66 -> 528,66 -> 528,60 -> 523,60 -> 523,56\n" +
+    "471,144 -> 471,134 -> 471,144 -> 473,144 -> 473,140 -> 473,144 -> 475,144 -> 475,143 -> 475,144 -> 477,144 -> 477,142 -> 477,144 -> 479,144 -> 479,137 -> 479,144 -> 481,144 -> 481,134 -> 481,144 -> 483,144 -> 483,136 -> 483,144 -> 485,144 -> 485,134 -> 485,144\n" +
+    "511,85 -> 515,85\n" +
+    "502,87 -> 506,87\n" +
+    "513,69 -> 513,71 -> 511,71 -> 511,76 -> 522,76 -> 522,71 -> 517,71 -> 517,69\n" +
+    "471,144 -> 471,134 -> 471,144 -> 473,144 -> 473,140 -> 473,144 -> 475,144 -> 475,143 -> 475,144 -> 477,144 -> 477,142 -> 477,144 -> 479,144 -> 479,137 -> 479,144 -> 481,144 -> 481,134 -> 481,144 -> 483,144 -> 483,136 -> 483,144 -> 485,144 -> 485,134 -> 485,144\n" +
+    "500,127 -> 505,127\n" +
+    "489,22 -> 494,22\n" +
+    "499,14 -> 499,15 -> 508,15\n" +
+    "480,118 -> 480,111 -> 480,118 -> 482,118 -> 482,116 -> 482,118 -> 484,118 -> 484,111 -> 484,118 -> 486,118 -> 486,110 -> 486,118 -> 488,118 -> 488,117 -> 488,118\n" +
+    "483,40 -> 487,40\n" +
+    "471,144 -> 471,134 -> 471,144 -> 473,144 -> 473,140 -> 473,144 -> 475,144 -> 475,143 -> 475,144 -> 477,144 -> 477,142 -> 477,144 -> 479,144 -> 479,137 -> 479,144 -> 481,144 -> 481,134 -> 481,144 -> 483,144 -> 483,136 -> 483,144 -> 485,144 -> 485,134 -> 485,144\n" +
+    "484,147 -> 484,149 -> 483,149 -> 483,153 -> 489,153 -> 489,149 -> 488,149 -> 488,147\n" +
+    "480,118 -> 480,111 -> 480,118 -> 482,118 -> 482,116 -> 482,118 -> 484,118 -> 484,111 -> 484,118 -> 486,118 -> 486,110 -> 486,118 -> 488,118 -> 488,117 -> 488,118\n" +
+    "471,144 -> 471,134 -> 471,144 -> 473,144 -> 473,140 -> 473,144 -> 475,144 -> 475,143 -> 475,144 -> 477,144 -> 477,142 -> 477,144 -> 479,144 -> 479,137 -> 479,144 -> 481,144 -> 481,134 -> 481,144 -> 483,144 -> 483,136 -> 483,144 -> 485,144 -> 485,134 -> 485,144\n" +
+    "497,26 -> 502,26\n" +
+    "512,53 -> 512,43 -> 512,53 -> 514,53 -> 514,48 -> 514,53 -> 516,53 -> 516,44 -> 516,53 -> 518,53 -> 518,50 -> 518,53 -> 520,53 -> 520,46 -> 520,53\n" +
+    "501,131 -> 506,131\n" +
+    "468,38 -> 472,38\n" +
+    "471,144 -> 471,134 -> 471,144 -> 473,144 -> 473,140 -> 473,144 -> 475,144 -> 475,143 -> 475,144 -> 477,144 -> 477,142 -> 477,144 -> 479,144 -> 479,137 -> 479,144 -> 481,144 -> 481,134 -> 481,144 -> 483,144 -> 483,136 -> 483,144 -> 485,144 -> 485,134 -> 485,144\n" +
+    "471,144 -> 471,134 -> 471,144 -> 473,144 -> 473,140 -> 473,144 -> 475,144 -> 475,143 -> 475,144 -> 477,144 -> 477,142 -> 477,144 -> 479,144 -> 479,137 -> 479,144 -> 481,144 -> 481,134 -> 481,144 -> 483,144 -> 483,136 -> 483,144 -> 485,144 -> 485,134 -> 485,144\n" +
+    "471,144 -> 471,134 -> 471,144 -> 473,144 -> 473,140 -> 473,144 -> 475,144 -> 475,143 -> 475,144 -> 477,144 -> 477,142 -> 477,144 -> 479,144 -> 479,137 -> 479,144 -> 481,144 -> 481,134 -> 481,144 -> 483,144 -> 483,136 -> 483,144 -> 485,144 -> 485,134 -> 485,144\n" +
+    "486,24 -> 491,24\n" +
+    "475,166 -> 475,159 -> 475,166 -> 477,166 -> 477,156 -> 477,166 -> 479,166 -> 479,165 -> 479,166 -> 481,166 -> 481,156 -> 481,166 -> 483,166 -> 483,163 -> 483,166 -> 485,166 -> 485,156 -> 485,166 -> 487,166 -> 487,159 -> 487,166\n" +
+    "475,166 -> 475,159 -> 475,166 -> 477,166 -> 477,156 -> 477,166 -> 479,166 -> 479,165 -> 479,166 -> 481,166 -> 481,156 -> 481,166 -> 483,166 -> 483,163 -> 483,166 -> 485,166 -> 485,156 -> 485,166 -> 487,166 -> 487,159 -> 487,166\n" +
+    "480,118 -> 480,111 -> 480,118 -> 482,118 -> 482,116 -> 482,118 -> 484,118 -> 484,111 -> 484,118 -> 486,118 -> 486,110 -> 486,118 -> 488,118 -> 488,117 -> 488,118\n" +
+    "471,36 -> 475,36\n" +
+    "480,118 -> 480,111 -> 480,118 -> 482,118 -> 482,116 -> 482,118 -> 484,118 -> 484,111 -> 484,118 -> 486,118 -> 486,110 -> 486,118 -> 488,118 -> 488,117 -> 488,118\n" +
+    "494,90 -> 494,92 -> 489,92 -> 489,100 -> 504,100 -> 504,92 -> 497,92 -> 497,90\n" +
+    "471,144 -> 471,134 -> 471,144 -> 473,144 -> 473,140 -> 473,144 -> 475,144 -> 475,143 -> 475,144 -> 477,144 -> 477,142 -> 477,144 -> 479,144 -> 479,137 -> 479,144 -> 481,144 -> 481,134 -> 481,144 -> 483,144 -> 483,136 -> 483,144 -> 485,144 -> 485,134 -> 485,144\n" +
+    "512,53 -> 512,43 -> 512,53 -> 514,53 -> 514,48 -> 514,53 -> 516,53 -> 516,44 -> 516,53 -> 518,53 -> 518,50 -> 518,53 -> 520,53 -> 520,46 -> 520,53\n" +
+    "484,147 -> 484,149 -> 483,149 -> 483,153 -> 489,153 -> 489,149 -> 488,149 -> 488,147\n" +
+    "480,118 -> 480,111 -> 480,118 -> 482,118 -> 482,116 -> 482,118 -> 484,118 -> 484,111 -> 484,118 -> 486,118 -> 486,110 -> 486,118 -> 488,118 -> 488,117 -> 488,118\n" +
+    "486,38 -> 490,38\n" +
+    "513,69 -> 513,71 -> 511,71 -> 511,76 -> 522,76 -> 522,71 -> 517,71 -> 517,69\n" +
+    "480,118 -> 480,111 -> 480,118 -> 482,118 -> 482,116 -> 482,118 -> 484,118 -> 484,111 -> 484,118 -> 486,118 -> 486,110 -> 486,118 -> 488,118 -> 488,117 -> 488,118\n" +
+    "508,83 -> 512,83\n" +
+    "512,53 -> 512,43 -> 512,53 -> 514,53 -> 514,48 -> 514,53 -> 516,53 -> 516,44 -> 516,53 -> 518,53 -> 518,50 -> 518,53 -> 520,53 -> 520,46 -> 520,53\n" +
+    "486,104 -> 486,105 -> 493,105 -> 493,104\n" +
+    "480,118 -> 480,111 -> 480,118 -> 482,118 -> 482,116 -> 482,118 -> 484,118 -> 484,111 -> 484,118 -> 486,118 -> 486,110 -> 486,118 -> 488,118 -> 488,117 -> 488,118\n" +
+    "484,147 -> 484,149 -> 483,149 -> 483,153 -> 489,153 -> 489,149 -> 488,149 -> 488,147\n" +
+    "480,29 -> 490,29 -> 490,28\n" +
+    "484,147 -> 484,149 -> 483,149 -> 483,153 -> 489,153 -> 489,149 -> 488,149 -> 488,147\n" +
+    "480,121 -> 480,122 -> 498,122 -> 498,121\n" +
+    "500,24 -> 505,24\n" +
+    "520,56 -> 520,60 -> 517,60 -> 517,66 -> 528,66 -> 528,60 -> 523,60 -> 523,56\n" +
+    "471,144 -> 471,134 -> 471,144 -> 473,144 -> 473,140 -> 473,144 -> 475,144 -> 475,143 -> 475,144 -> 477,144 -> 477,142 -> 477,144 -> 479,144 -> 479,137 -> 479,144 -> 481,144 -> 481,134 -> 481,144 -> 483,144 -> 483,136 -> 483,144 -> 485,144 -> 485,134 -> 485,144\n" +
+    "494,90 -> 494,92 -> 489,92 -> 489,100 -> 504,100 -> 504,92 -> 497,92 -> 497,90\n" +
+    "475,166 -> 475,159 -> 475,166 -> 477,166 -> 477,156 -> 477,166 -> 479,166 -> 479,165 -> 479,166 -> 481,166 -> 481,156 -> 481,166 -> 483,166 -> 483,163 -> 483,166 -> 485,166 -> 485,156 -> 485,166 -> 487,166 -> 487,159 -> 487,166\n" +
+    "471,144 -> 471,134 -> 471,144 -> 473,144 -> 473,140 -> 473,144 -> 475,144 -> 475,143 -> 475,144 -> 477,144 -> 477,142 -> 477,144 -> 479,144 -> 479,137 -> 479,144 -> 481,144 -> 481,134 -> 481,144 -> 483,144 -> 483,136 -> 483,144 -> 485,144 -> 485,134 -> 485,144\n" +
+    "480,118 -> 480,111 -> 480,118 -> 482,118 -> 482,116 -> 482,118 -> 484,118 -> 484,111 -> 484,118 -> 486,118 -> 486,110 -> 486,118 -> 488,118 -> 488,117 -> 488,118\n" +
+    "480,118 -> 480,111 -> 480,118 -> 482,118 -> 482,116 -> 482,118 -> 484,118 -> 484,111 -> 484,118 -> 486,118 -> 486,110 -> 486,118 -> 488,118 -> 488,117 -> 488,118\n" +
+    "475,166 -> 475,159 -> 475,166 -> 477,166 -> 477,156 -> 477,166 -> 479,166 -> 479,165 -> 479,166 -> 481,166 -> 481,156 -> 481,166 -> 483,166 -> 483,163 -> 483,166 -> 485,166 -> 485,156 -> 485,166 -> 487,166 -> 487,159 -> 487,166\n" +
+    "471,144 -> 471,134 -> 471,144 -> 473,144 -> 473,140 -> 473,144 -> 475,144 -> 475,143 -> 475,144 -> 477,144 -> 477,142 -> 477,144 -> 479,144 -> 479,137 -> 479,144 -> 481,144 -> 481,134 -> 481,144 -> 483,144 -> 483,136 -> 483,144 -> 485,144 -> 485,134 -> 485,144\n" +
+    "499,14 -> 499,15 -> 508,15\n" +
+    "513,69 -> 513,71 -> 511,71 -> 511,76 -> 522,76 -> 522,71 -> 517,71 -> 517,69\n" +
+    "494,90 -> 494,92 -> 489,92 -> 489,100 -> 504,100 -> 504,92 -> 497,92 -> 497,90\n" +
+    "477,32 -> 481,32\n" +
+    "471,144 -> 471,134 -> 471,144 -> 473,144 -> 473,140 -> 473,144 -> 475,144 -> 475,143 -> 475,144 -> 477,144 -> 477,142 -> 477,144 -> 479,144 -> 479,137 -> 479,144 -> 481,144 -> 481,134 -> 481,144 -> 483,144 -> 483,136 -> 483,144 -> 485,144 -> 485,134 -> 485,144\n" +
+    "505,85 -> 509,85\n" +
+    "520,56 -> 520,60 -> 517,60 -> 517,66 -> 528,66 -> 528,60 -> 523,60 -> 523,56";
 }
