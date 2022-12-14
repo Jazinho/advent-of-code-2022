@@ -41,6 +41,7 @@ public class Day14Main {
       rocks.add(singleRock);
     }
 
+    minX = minX - 1;
     int mapWidth = maxX - minX + 1;
     int mapHeigth = maxY + 1;
     String[][] map = new String[mapHeigth][mapWidth];
@@ -51,6 +52,7 @@ public class Day14Main {
     }
     initRocks(map, rocks, minX);
     drawMap(map);
+    simulateSand(map, minX, maxY);
   }
 
   private static void initRocks(String[][] map, List<List<Map.Entry<Integer, Integer>>> rocks, int mapShiftOnX) {
@@ -82,5 +84,39 @@ public class Day14Main {
       }
       System.out.println();
     }
+  }
+
+  private static void simulateSand(String[][] map, int mapShiftOnX, int maxY){
+    int startingPositionX = STARTING_POINT_POS - mapShiftOnX;
+    int sandCounter = 0;
+    boolean sandOverflow = false;
+
+    while (!sandOverflow) {
+      int sandCurPosX = startingPositionX, sandCurPosY = 0;
+
+      while (true) {
+        if (sandCurPosY >= maxY) {
+          sandOverflow = true;
+          break;
+        }
+
+        if (map[sandCurPosY+1][sandCurPosX] == null || map[sandCurPosY+1][sandCurPosX].equals(".")){
+          sandCurPosY++;
+        } else if (map[sandCurPosY+1][sandCurPosX-1] == null || map[sandCurPosY+1][sandCurPosX-1].equals(".")){
+          sandCurPosY++;
+          sandCurPosX--;
+        } else if (map[sandCurPosY+1][sandCurPosX+1] == null || map[sandCurPosY+1][sandCurPosX+1].equals(".")){
+          sandCurPosY++;
+          sandCurPosX++;
+        } else {
+          map[sandCurPosY][sandCurPosX] = "o";
+          break;
+        }
+      }
+
+      sandCounter++;
+    }
+
+    System.out.println("Sand no. was overflow: " + sandCounter);
   }
 }
